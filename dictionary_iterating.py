@@ -9,7 +9,6 @@ def main():
         print(fruit + ': ' + fruits[fruit])
     
     print()
-
     for fruit in fruits.keys():
         print(fruit + ': ' + fruits[fruit])
     
