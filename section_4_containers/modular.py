@@ -11,7 +11,6 @@ def main():
 
     for i in range(0,30):
         print(i%12, end=',')
-    
     animals = ['pig','cow','cat']
     for i in range(0,20):
         print(animals[i % len(animals)],end=' ')
