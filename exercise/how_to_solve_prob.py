@@ -1,4 +1,33 @@
 """
+Universal framework you can reuse for determining entity relationship
+
+For any problem, follow this checklist:
+
+1. Extract entities (nouns)
+
+Ignore verbs.
+
+2. Identify IDs
+
+Anything with an ID is probably an entity.
+
+3. Find connector entities
+
+If something contains two IDs → it’s a relationship table.
+
+4. Decide where logic lives
+
+Logic belongs to the entity that has all required data.
+
+5. Let relationships drive iteration
+
+Loop over the entity that connects everything.
+
+"""
+
+
+
+"""
 Write a function that takes:
 - A list of students: ["Alice", "Bob", "Charlie"]
 - A list of grades: [[85, 90, 78], [92, 88, 95], [76, 82, 80]]

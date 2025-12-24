@@ -78,6 +78,16 @@ assignments = []
 """
 
 # Step 5: Design Before Coding
+
+## my approach
+"""
+Edge cases. missed
+Algorithm Complexity:
+Your nested loops approach is O(n²) which works but can be simplified. Let me show you a more efficient approach.
+
+"""
+
+
 def find_employee_with_heighest_hours(employees, shifts,assignments):
 
 
@@ -94,14 +104,14 @@ def find_employee_with_heighest_hours(employees, shifts,assignments):
         # data validatan
 
         for i in range(0,len(employees)):
-            current_employee = str(employees[i])
+            current_employee = str(employees[i]) # Alice
             for j in range(0,len(assignments)):
-                current_assigment = assignments[j]
-            employee_index = int(current_assigment[0])
-            shift_index = int(current_assigment[1])
+                current_assigment = assignments[j] # (0,1)
+            employee_index = int(current_assigment[0]) # 0
+            shift_index = int(current_assigment[1]) # 1
             if employee_index < 0 or shift_index < 0:
                 return 'No negative values is allowed'
-            if i == employee_index:
+            if i == employee_index: # confirm if current employee's index is same as the employee index in the shift tuple. 
 
                 if not current_employee in  employee_and_shift_index:
                    employee_and_shift_index[current_employee] = set()
@@ -120,6 +130,77 @@ def find_employee_with_heighest_hours(employees, shifts,assignments):
          return ''
     return highest_employee
 
+
+# REFINED APPROACH
+
+def find_employee_with_most_hours(employees, shifts, assignments):
+    # STEP 1: Comprehensive validation
+    if not employees or not shifts or not assignments:
+        return ""
+    
+    # STEP 2: Initialize employee hours tracking
+    employee_hours = {name: 0 for name in employees}
+    
+    # STEP 3: Process each assignment
+    # try:
+    #     for assignment in assignments:
+    #         # Validate assignment format
+    #         if len(assignment) != 2:
+    #             return ""
+            
+    #         emp_index, shift_index = assignment
+            
+    #         # Validate indices are integers and within bounds
+    #         if (not isinstance(emp_index, int) or 
+    #             not isinstance(shift_index, int) or
+    #             emp_index < 0 or emp_index >= len(employees) or
+    #             shift_index < 0 or shift_index >= len(shifts)):
+    #             return ""
+            
+    #         # Add hours to employee
+    #         employee_name = employees[emp_index]
+    #         employee_hours[employee_name] += shifts[shift_index]
+    
+    # except (TypeError, IndexError):
+    #     return ""
+    
+    # # STEP 4: Find employee with most hours
+    # max_hours = -1
+    # top_employee = ""
+    
+    # for employee, hours in employee_hours.items():
+    #     if hours > max_hours:
+    #         max_hours = hours
+    #         top_employee = employee
+    #     # Tie handling: if equal hours, keep first one we found
+    #     # (since we iterate in order, this maintains original list order for ties)
+    
+    return employee_hours # top_employee
+
+# Test cases
+def main():
+    # Normal case
+    employees = ["Alice", "Bob", "Charlie"]
+    shifts = [8, 6, 4, 8, 4]
+    assignments = [(0,0), (1,1), (2,2), (0,3), (1,4)]
+    result = find_employee_with_most_hours(employees, shifts, assignments)
+    print(f"Normal case: {result}")  # "Alice"
+    
+    # Edge case: invalid employee index
+    assignments_bad = [(5,0)]  # employee 5 doesn't exist
+    result = find_employee_with_most_hours(employees, shifts, assignments_bad)
+    print(f"Invalid index: '{result}'")  # ""
+    
+    # Edge case: tie scenario
+    assignments_tie = [(0,0), (1,0)]  # Both get 8 hours
+    result = find_employee_with_most_hours(employees, shifts, assignments_tie)
+    print(f"Tie case: {result}")  # "Alice" (first in original list)
+    
+    # Edge case: empty assignments
+    result = find_employee_with_most_hours(employees, shifts, [])
+    print(f"Empty assignments: '{result}'")  # ""
+
+main()
 
 
 
