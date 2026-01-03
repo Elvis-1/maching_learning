@@ -47,6 +47,7 @@ electricity = day1 + day2 + ...
 """
 
 import re
+from collections import defaultdict
 
 def main():
 
@@ -56,21 +57,36 @@ def main():
     Tuesday     30          30          10          40
     Wednessday  20          10          10          60
     Thursday    10          5           3           4
-"""
+    """
 
-  
+    header = None
+    category = defaultdict(float)
+    days = defaultdict(float)
+
     lines = re.split(r"\n",text)
+
     for line in lines:
-       
-       if re.search(r"^\s$",line):
-           continue
-       print(f"{line}")
+        if re.search(r"^\s*$",line):
+            continue
 
-       
-       
-
+        line = line.lstrip()
         
+        fields = re.split('\s+',line)
 
+        if header is None:
+            header = fields
+            continue
+        day = fields.pop(0)
+        
+        for i, field in enumerate(fields):
+            
+            heading = header[i + 1]
+            days[day] += float(field)
+            category[heading] += float(field)
+    print(category)
+    print()
+    print(days)
+       
 main()
 
 
