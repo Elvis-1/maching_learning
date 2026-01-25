@@ -38,6 +38,22 @@ If inputs are invalid, return empty string.
 
 """
 
+
+
+"""
+Take your time with the 5-step method:
+
+Understand the Domain: What's really being asked?
+
+Identify Core Components: What entities and relationships exist?
+
+Map Data Flow: How does data transform through the system?
+
+Find Edge Cases: What could go wrong?
+
+Design Solution: What algorithm/data structures make sense?
+"""
+
 # Step 1: Understand the Domain
 
 # My thought process:
