@@ -177,7 +177,7 @@ def fnd_top_student(students,grades):
             max_average = average
             best_student = students[i]
         
-    return [max_average,best_student]
+    return best_student
 
 
 
@@ -187,5 +187,5 @@ def main():
     students =    ["Alice", "Bob", "Charlie"]
     grades =    [[85,90,78], [92,88,95], [76,82,80]]
 
-    print(fnd_top_student(students,grades))
+    print(fnd_top_student(students,grades)) # Bob
 main()
