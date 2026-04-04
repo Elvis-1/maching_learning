@@ -1,0 +1,41 @@
+Functional Programming (FP)
+
+- Use pure functions
+- Prefer recursion to loops
+- Functions are first class types
+- Data is immutable
+
+
+Mental Model for Recursion
+
+Always ask two questions:
+
+Question 1
+What is the smallest valid input?
+
+Question 2
+How do I reduce the problem toward that base case?
+
+Recursion Template (Use This for Most Problems)
+def func(problem):
+
+    # 1 Base Case
+    if stopping_condition:
+        return
+
+    # 2 Work
+    do_something(problem)
+
+    # 3 Recursive Step
+    func(smaller_problem)
+
+
+Practice these in order:
+
+Countdown
+Factorial
+Fibonacci
+Sum of list
+Reverse string
+Binary search
+Tree traversal
