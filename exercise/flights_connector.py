@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict,Any
 
 """
 An airline needs to find connecting flights between cities. Write a function that:
@@ -38,7 +38,7 @@ Rules:
 
 class Flights:
  #  list of (flight_id, origin, destination, departure_time, arrival_time, price)
-   def __init__(self,flight_id,origin,destination,departure_time,arrival_time,price):
+   def __init__(self,flight_id:str,origin:str,destination:str,departure_time:str,arrival_time:str,price:float):
       self.flight_id = flight_id
       self.origin = origin
       self.destination = destination
@@ -60,15 +60,18 @@ def conv_minutes_to_str(minutes:int) -> str:
     h = minutes//60
     s = minutes%60
     print(h,' hours ', s,' seconds')
-    return f'{h:1d}:{s:1d}'
+    return f'{h:02d}:{s:02d}'
       
 
 
       
       
 
-def flight_connector(flights:List[str]) -> List:
-  flight =   [
+def flight_connector():
+#-> Dict[str:Any]:
+  origin =  "NYC"
+  destination = "LAX"
+  flights =   [
     ("F1", "NYC", "CHI", "08:00", "10:00", 300),
     ("F2", "CHI", "LAX", "11:00", "13:30", 400),
     ("F3", "NYC", "DFW", "09:00", "12:00", 350),
@@ -76,10 +79,47 @@ def flight_connector(flights:List[str]) -> List:
     ("F5", "NYC", "LAX", "14:00", "17:00", 600),  # Direct flight
     ("F6", "LAX", "SFO", "16:00", "17:30", 150),
   ]
+  #   {
+  #   "flights": ["F1", "F2"],  # List of flight IDs in order
+  #   "total_price": 700,
+  #   "total_duration": 330,  # Total journey time in minutes (including layovers)
+  #   "layovers": [60]  # Layover times in minutes between flights
+  # }
+  # create a flight comoreshenstion
+  flight_comprehension = [
+  Flights(id,origin,destination,departure_time,arrival_time,price)  for (id,origin,destination,departure_time,arrival_time,price) in flights
+      ]
+  flight_connections = {'flights':[],'total_pricee':0.0,'total_duration':0,'layovers':[]}
+  isOrigin = None
+  isDestination = None
+  trackFlightId = None
+  for flight in flight_comprehension:
+      flight_id = flight.flight_id
+      flight_origin = flight.origin
+      flight_destination = flight.destination
+      departure_time = flight.departure_time
+      arrival_time = flight.arrival_time
+      price = flight.price
 
+      
+      # check if it is origin
+      if  isOrigin == None:
+          if origin == flight_origin:
+                isOrigin = True
+                trackFlightId = flight_id
+                flight_connections['flights'].append(flight_id)
+                # check if destination aligns
+                if destination == flight_destination:
+                    isDestination = True
+          else:
+              continue
+      
+      
+          
 def main():
-    print(convert_time_string_to_minutes('5'))
-    print(conv_minutes_to_str(60))
+    # print(convert_time_string_to_minutes('5'))
+    # print(conv_minutes_to_str(60))
+    print(flight_connector())
 
 if __name__ == '__main__':
     main()
